@@ -16,7 +16,7 @@ $pageTitle  = 'Al je recepten - MijnRecepten';
 $activePage = 'recepten';
 include 'includes/header.php';
 ?>
-
+    <link rel = "stylesheet" type = "text/css" href = "index.css"/>
     <section class="intro">
         <h1>Al je recepten</h1>
         <p>Snel, simpel en zonder gedoe – <?= count($recipes) ?> recepten voor jou.</p>
