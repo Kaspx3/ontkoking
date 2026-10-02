@@ -1,0 +1,361 @@
+/* ---------- Variables (colors and fonts from the moodboard) ---------- */
+:root {
+    --white: #ffffff;
+    --off-white: #f4f6f3;
+    --light-green: #a8d8ae;
+    --green: #4a9d5f;
+    --dark-green: #1e3a2d;
+    --text-soft: #5b6f63;
+    --border: #dfe8e1;
+
+    --font-heading: "Poppins", sans-serif;
+    --font-body: "Inter", sans-serif;
+}
+
+/* ---------- Base ---------- */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--off-white);
+    color: var(--dark-green);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+h1, h2, h3 {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* ---------- Header ---------- */
+.site-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 0 40px;
+    height: 66px;
+    background: var(--dark-green);
+    color: var(--white);
+}
+
+.logo {
+    margin-right: 40px;
+    font-family: var(--font-heading);
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--white);
+}
+
+.logo span {
+    color: var(--light-green);
+}
+
+.main-nav {
+    display: flex;
+    gap: 8px;
+    margin-right: auto;
+}
+
+.main-nav a {
+    padding: 8px 20px;
+    border-radius: 999px;
+    color: var(--light-green);
+}
+
+.main-nav a.active {
+    background: var(--green);
+    color: var(--white);
+}
+
+.search input {
+    width: 300px;
+    padding: 10px 20px;
+    border: 0;
+    border-radius: 999px;
+    background: #2f5041;
+    color: var(--white);
+    font: inherit;
+}
+
+.search input::placeholder {
+    color: var(--light-green);
+}
+
+.round-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--green);
+    color: var(--white);
+    font-family: var(--font-heading);
+    font-weight: 600;
+}
+
+.round-btn-light {
+    background: var(--light-green);
+    color: var(--dark-green);
+    font-size: 24px;
+}
+
+/* ---------- Intro ---------- */
+.intro {
+    padding: 32px 40px 28px;
+    background: var(--white);
+}
+
+.intro h1 {
+    font-size: 42px;
+}
+
+.intro p {
+    margin: 8px 0 0;
+    color: var(--text-soft);
+    font-size: 18px;
+}
+
+/* ---------- Page layout (filters + recipes) ---------- */
+.layout {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 40px;
+    align-items: start;
+    padding: 36px 40px 80px;
+}
+
+/* ---------- Filters ---------- */
+.filters {
+    padding: 28px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 28px;
+}
+
+.filters h3 {
+    margin-bottom: 16px;
+    color: var(--green);
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.filters h3:not(:first-child) {
+    margin-top: 36px;
+}
+
+.check {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+    cursor: pointer;
+}
+
+.check input {
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    margin: 0;
+    border: 2px solid var(--green);
+    border-radius: 6px;
+    background: var(--white);
+    cursor: pointer;
+}
+
+.check input:checked {
+    background: var(--green);
+    box-shadow: inset 0 0 0 3px var(--white);
+}
+
+.pills {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.pill {
+    padding: 8px 20px;
+    border: 1.5px solid var(--green);
+    border-radius: 999px;
+}
+
+.pill.active {
+    background: var(--green);
+    color: var(--white);
+}
+
+/* ---------- Recipes ---------- */
+.recipes-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.recipes-top h2 {
+    font-size: 30px;
+}
+
+.sort {
+    padding: 10px 24px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--white);
+    color: var(--dark-green);
+    font: inherit;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+}
+
+/* ---------- Recipe card ---------- */
+.card {
+    position: relative;
+    overflow: hidden;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 28px;
+}
+
+.card-link {
+    display: block;
+}
+
+/* Placeholder image: a bowl made of two shapes, replace with a real <img> later */
+.card-img {
+    position: relative;
+    height: 190px;
+    background: var(--light-green);
+    border-radius: 24px;
+}
+
+.card-img::before {              /* the green dot */
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 24px;
+    height: 24px;
+    margin: -34px 0 0 -30px;
+    border-radius: 50%;
+    background: var(--green);
+}
+
+.card-img::after {               /* the bowl */
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 106px;
+    height: 53px;
+    margin: -14px 0 0 -53px;
+    border-radius: 0 0 106px 106px;
+    background: var(--white);
+}
+
+.card-body {
+    padding: 22px 24px 26px;
+}
+
+.card-body h3 {
+    font-size: 22px;
+    overflow-wrap: anywhere;
+}
+
+.card-body p {
+    margin: 8px 0 0;
+    color: var(--text-soft);
+    font-size: 15px;
+}
+
+/* Favorite heart, top right of the image */
+.fav {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 44px;
+    height: 44px;
+    border: 0;
+    border-radius: 50%;
+    background: var(--white);
+    color: var(--green);
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+/* ---------- Focus (keyboard) ---------- */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+    outline: 3px solid var(--light-green);
+    outline-offset: 2px;
+}
+
+/* ---------- Smaller screens ---------- */
+@media (max-width: 1100px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 820px) {
+    .site-header {
+        flex-wrap: wrap;
+        height: auto;
+        padding: 16px 20px;
+    }
+
+    .logo {
+        margin-right: auto;
+    }
+
+    .main-nav {
+        order: 3;
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    .search {
+        order: 4;
+        width: 100%;
+    }
+
+    .search input {
+        width: 100%;
+    }
+
+    .intro,
+    .layout {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 560px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
