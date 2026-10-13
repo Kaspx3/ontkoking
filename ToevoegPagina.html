@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Recept bewerken – MijnRecepten</title>
 
+    <!-- Poppins voor koppen, Arial/Helvetica als fallback -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet">
@@ -13,6 +14,7 @@
 </head>
 <body>
 
+<!-- ============ HEADER / NAVIGATIE ============ -->
 <header class="site-header">
     <a href="#" class="logo">Mijn<span>Recepten</span></a>
 
@@ -29,8 +31,10 @@
     </div>
 </header>
 
+<!-- ============ HOOFDINHOUD ============ -->
 <main class="page">
 
+    <!-- Het hele formulier: later koppelen we hier PHP aan via action="" -->
     <form action="" method="post" enctype="multipart/form-data">
 
         <div class="page-head">
@@ -43,6 +47,7 @@
 
         <div class="layout">
 
+            <!-- ---------- LINKERKOLOM ---------- -->
             <section class="col-left">
 
                 <label class="upload" for="foto">
@@ -74,38 +79,39 @@
 
             </section>
 
+            <!-- ---------- RECHTERKOLOM ---------- -->
             <section class="col-right">
 
                 <h2>Ingrediënten</h2>
-                <ul class="rows">
+                <ul class="rows" data-lijst="ingredienten">
                     <li class="row">
-                        <input type="text" name="ingredienten[]" aria-label="Ingrediënt 1">
+                        <input type="text" name="ingredienten[]" aria-label="Ingrediënt 1" placeholder="Bijv. 200 g bloem">
                         <button type="button" class="remove" aria-label="Ingrediënt 1 verwijderen">×</button>
                     </li>
                     <li class="row">
-                        <input type="text" name="ingredienten[]" aria-label="Ingrediënt 2">
+                        <input type="text" name="ingredienten[]" aria-label="Ingrediënt 2" placeholder="Bijv. 1 el honing">
                         <button type="button" class="remove" aria-label="Ingrediënt 2 verwijderen">×</button>
                     </li>
                     <li class="row">
-                        <input type="text" name="ingredienten[]" aria-label="Ingrediënt 3">
+                        <input type="text" name="ingredienten[]" aria-label="Ingrediënt 3" placeholder="Bijv. snufje zout">
                         <button type="button" class="remove" aria-label="Ingrediënt 3 verwijderen">×</button>
                     </li>
                 </ul>
-                <button type="button" class="add-btn">+ ingrediënt</button>
+                <button type="button" class="add-btn" data-lijst="ingredienten">+ ingrediënt</button>
 
                 <h2 class="second-heading">Stappen</h2>
                 <!-- <ol> zorgt voor automatische nummering via CSS counters -->
-                <ol class="rows steps">
+                <ol class="rows steps" data-lijst="stappen">
                     <li class="row">
-                        <input type="text" name="stappen[]" aria-label="Stap 1">
+                        <input type="text" name="stappen[]" aria-label="Stap 1" placeholder="Beschrijf de stap..." >
                         <button type="button" class="remove" aria-label="Stap 1 verwijderen">×</button>
                     </li>
                     <li class="row">
-                        <input type="text" name="stappen[]" aria-label="Stap 2">
+                        <input type="text" name="stappen[]" aria-label="Stap 2" placeholder="Beschrijf de stap...">
                         <button type="button" class="remove" aria-label="Stap 2 verwijderen">×</button>
                     </li>
                 </ol>
-                <button type="button" class="add-btn">+ stap</button>
+                <button type="button" class="add-btn" data-lijst="stappen">+ stap</button>
 
             </section>
         </div>
@@ -113,5 +119,6 @@
     </form>
 </main>
 
+<script src="script.js" defer></script>
 </body>
 </html>
