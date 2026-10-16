@@ -31,6 +31,7 @@ $canEdit = $user && ($user['id'] == $recipe['gebruiker_id'] || $user['rol'] === 
 // Verwijderen (alleen eigenaar of admin)
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['actie'] ?? '') === 'verwijder' && $canEdit) {
     $pdo->prepare('DELETE FROM recepten WHERE id = ?')->execute([$id]);
+    delete_upload($recipe['afbeelding_url']);
     header('Location: index.php');
     exit;
 }
@@ -45,7 +46,7 @@ $ing = $pdo->prepare(
 $ing->execute([$id]);
 $ingredients = $ing->fetchAll();
 
-$steps = array_values(array_filter(array_map('trim', preg_split('/\R/', (string) $recipe['bereidingswijze']))));
+$steps = steps_from_text((string) $recipe['bereidingswijze']);
 
 $backUrl = 'recept.php?id=' . $id;
 
@@ -76,7 +77,7 @@ include 'includes/header.php';
                 <button class="btn" type="submit">Op boodschappenlijst</button>
             </form>
             <?php if ($canEdit): ?>
-                <a class="btn btn-light" href="bewerken.php?id=<?= $id ?>">Bewerken</a>
+                <a class="btn btn-light" href="recept_form.php?id=<?= $id ?>">Bewerken</a>
                 <form action="recept.php?id=<?= $id ?>" method="post" onsubmit="return confirm('Dit recept verwijderen?');">
                     <input type="hidden" name="actie" value="verwijder">
                     <button class="btn btn-danger" type="submit">Verwijderen</button>
@@ -86,21 +87,27 @@ include 'includes/header.php';
     </section>
 
     <div class="detail-layout">
-        <section class="panel">
-            <h3>Ingrediënten</h3>
-            <?php if ($ingredients): ?>
-                <ul class="ingredient-list">
-                    <?php foreach ($ingredients as $row): ?>
-                        <li>
-                            <span class="amount"><?= e(trim(format_amount($row['hoeveelheid']) . ' ' . $row['eenheid'])) ?></span>
-                            <?= e($row['naam']) ?>
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
-            <?php else: ?>
-                <p class="muted">Nog geen ingrediënten.</p>
+        <div class="detail-side">
+            <?php if ($recipe['afbeelding_url']): ?>
+                <img class="detail-photo" src="<?= e($recipe['afbeelding_url']) ?>" alt="<?= e($recipe['titel']) ?>">
             <?php endif; ?>
-        </section>
+
+            <section class="panel">
+                <h3>Ingrediënten</h3>
+                <?php if ($ingredients): ?>
+                    <ul class="ingredient-list">
+                        <?php foreach ($ingredients as $row): ?>
+                            <li>
+                                <span class="amount"><?= e(trim(format_amount($row['hoeveelheid']) . ' ' . $row['eenheid'])) ?></span>
+                                <?= e($row['naam']) ?>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php else: ?>
+                    <p class="muted">Nog geen ingrediënten.</p>
+                <?php endif; ?>
+            </section>
+        </div>
 
         <section class="panel">
             <?php if ($recipe['beschrijving']): ?>
