@@ -81,3 +81,44 @@ document.addEventListener('click', (e) => {
         nummerOpnieuw(lijst);
     }
 });
+
+// =========================================================
+// 5. FOTO-PREVIEW
+// =========================================================
+const fotoInput   = document.getElementById('foto');
+const fotoPreview = document.getElementById('fotoPreview');
+const uploadVlak  = document.getElementById('uploadVlak');
+let previewUrl = null;
+
+function resetFoto() {
+    if (previewUrl) URL.revokeObjectURL(previewUrl);   // geheugen vrijmaken
+    previewUrl = null;
+    fotoPreview.hidden = true;
+    fotoPreview.removeAttribute('src');
+    uploadVlak.classList.remove('is-filled');
+}
+
+fotoInput.addEventListener('change', () => {
+    const bestand = fotoInput.files[0];
+    resetFoto();
+    if (!bestand) return;                              // bijv. op "Annuleren" gedrukt in het venster
+
+    // Maximale grootte komt van PHP (data-max-bytes) zodat browser en server hetzelfde zeggen
+    const maxBytes = Number(fotoInput.dataset.maxBytes) || 2 * 1024 * 1024;
+
+    if (!['image/jpeg', 'image/png', 'image/webp'].includes(bestand.type)) {
+        alert('Kies een jpg-, png- of webp-foto.');
+        fotoInput.value = '';
+        return;
+    }
+    if (bestand.size > maxBytes) {
+        alert(`De foto is te groot. Maximaal ${Math.floor(maxBytes / 1048576)} MB.`);
+        fotoInput.value = '';
+        return;
+    }
+
+    previewUrl = URL.createObjectURL(bestand);
+    fotoPreview.src = previewUrl;
+    fotoPreview.hidden = false;
+    uploadVlak.classList.add('is-filled');
+});
