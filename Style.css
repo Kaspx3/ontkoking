@@ -1,0 +1,292 @@
+/* =========================================================
+   1. VARIABELEN – alle kleuren en maten op één plek
+   ========================================================= */
+:root {
+    --green-900: #1e3a2c;   /* header, titels */
+    --green-700: #2f5240;   /* zoekveld */
+    --green-500: #4a9d5f;   /* knoppen, accenten */
+    --green-300: #a8d8ac;   /* uploadvlak */
+    --green-200: #b6e0b9;   /* plus-knop, logo-accent */
+    --bg:        #f4f6f3;   /* pagina-achtergrond */
+    --white:     #ffffff;
+    --line:      #dfe5de;   /* randen van invoervelden */
+
+    --font-head: "Poppins", "Segoe UI", Arial, sans-serif;
+    --font-body: Arial, Helvetica, sans-serif;
+
+    --radius: 20px;
+}
+
+/* =========================================================
+   2. RESET + BASIS
+   ========================================================= */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--green-900);
+    font-family: var(--font-body);
+    font-size: 16px;
+}
+
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; margin: 0; padding: 0; }
+
+/* Zichtbare toetsenbordfocus (toegankelijkheid) */
+:focus-visible {
+    outline: 3px solid var(--green-500);
+    outline-offset: 2px;
+}
+
+/* =========================================================
+   3. HEADER
+   ========================================================= */
+.site-header {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    padding: 0 43px;
+    height: 64px;
+    background: var(--green-900);
+    color: var(--white);
+}
+
+.logo {
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 1.55rem;
+}
+.logo span { color: var(--green-200); }
+
+.main-nav { display: flex; gap: 22px; }
+
+.nav-link {
+    padding: 9px 20px;
+    border-radius: 999px;
+    color: var(--green-200);
+}
+.nav-link.is-active {
+    background: var(--green-500);
+    color: var(--white);
+}
+
+/* margin-left:auto duwt de tools helemaal naar rechts */
+.header-tools {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.search {
+    width: 224px;
+    height: 32px;
+    padding: 0 20px;
+    border: 0;
+    border-radius: 999px;
+    background: var(--green-700);
+    color: var(--white);
+    font-size: 1rem;
+}
+.search::placeholder { color: var(--green-200); opacity: .8; }
+
+.circle-btn {
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--green-500);
+    color: var(--white);
+    font-family: var(--font-head);
+    font-weight: 700;
+}
+.circle-btn--light { background: var(--green-200); color: var(--green-900); }
+
+/* =========================================================
+   4. PAGINAKOP
+   ========================================================= */
+.page {
+    max-width: 1148px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+}
+
+.page-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 32px 0 24px;
+    border-bottom: 1px solid var(--line);
+}
+
+h1, h2 { font-family: var(--font-head); margin: 0; }
+h1 { font-size: 2.2rem; }
+
+.page-actions { display: flex; gap: 12px; }
+
+.btn {
+    display: inline-block;
+    padding: 11px 22px;
+    border-radius: 999px;
+    border: 2px solid var(--green-500);
+    font-family: var(--font-head);
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+}
+.btn--outline { background: var(--white); border-color: var(--green-200); color: var(--green-900); }
+.btn--solid   { background: var(--green-500); color: var(--white); }
+
+/* =========================================================
+   5. TWEE KOLOMMEN (CSS Grid)
+   ========================================================= */
+.layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    margin-top: 28px;
+}
+
+/* =========================================================
+   6. LINKERKOLOM – upload + formuliervelden
+   ========================================================= */
+.upload {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    height: 200px;
+    background: var(--green-300);
+    border: 2px dashed var(--green-500);
+    border-radius: var(--radius);
+    cursor: pointer;
+}
+.upload-text { font-family: var(--font-head); font-weight: 600; }
+
+/* Kommetje met bolletje, alleen met CSS getekend */
+.bowl {
+    position: relative;
+    width: 76px;
+    height: 56px;
+}
+.bowl::before {            /* het bolletje */
+    content: "";
+    position: absolute;
+    top: 0; left: 28px;
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: var(--green-500);
+}
+.bowl::after {             /* de halve cirkel */
+    content: "";
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 76px; height: 38px;
+    background: var(--white);
+    border-radius: 0 0 76px 76px;
+}
+
+.field { margin-top: 20px; }
+.field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 21px;
+}
+
+.field label {
+    display: block;
+    margin-bottom: 8px;
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: .8rem;
+    letter-spacing: .02em;
+    text-transform: uppercase;
+    color: var(--green-500);
+}
+
+/* Alle tekstvelden delen dezelfde stijl */
+input[type="text"] {
+    width: 100%;
+    height: 42px;
+    padding: 0 16px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: var(--white);
+    color: var(--green-900);
+    font-size: 1rem;
+}
+
+/* =========================================================
+   7. RECHTERKOLOM – ingrediënten en stappen
+   ========================================================= */
+h2 { font-size: 1.5rem; margin-bottom: 18px; }
+.second-heading { margin-top: 44px; }
+
+.rows { display: flex; flex-direction: column; gap: 12px; }
+
+.row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.row input { flex: 1; }
+
+.remove {
+    flex: none;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--white);
+    color: var(--green-900);
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+.remove:hover { background: var(--bg); }
+
+.add-btn {
+    display: block;
+    width: 100%;
+    height: 40px;
+    margin-top: 12px;
+    border: 1.5px dashed var(--green-500);
+    border-radius: 14px;
+    background: transparent;
+    color: var(--green-500);
+    font-family: var(--font-head);
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+}
+.add-btn:hover { background: rgba(74, 157, 95, .08); }
+
+/* Automatische stapnummers met een CSS counter */
+.steps { counter-reset: stap; }
+.steps .row { counter-increment: stap; }
+.steps .row::before {
+    content: counter(stap);
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--green-500);
+    color: var(--white);
+    font-family: var(--font-head);
+    font-weight: 700;
+}
+
+/* =========================================================
+   8. RESPONSIVE – onder 800px onder elkaar
+   ========================================================= */
+@media (max-width: 800px) {
+    .site-header { flex-wrap: wrap; height: auto; padding: 12px 20px; gap: 12px; }
+    .main-nav { order: 3; width: 100%; overflow-x: auto; }
+    .search { width: 140px; }
+    .layout { grid-template-columns: 1fr; gap: 32px; }
+    .page-head { flex-direction: column; align-items: flex-start; gap: 16px; }
+}
