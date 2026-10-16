@@ -163,8 +163,34 @@ h1 { font-size: 2.2rem; }
     border: 2px dashed var(--green-500);
     border-radius: var(--radius);
     cursor: pointer;
+    position: relative;      /* nodig voor de preview-foto */
+    overflow: hidden;
 }
+.upload:focus-within { outline: 3px solid var(--green-500); outline-offset: 2px; }
 .upload-text { font-family: var(--font-head); font-weight: 600; }
+
+/* Preview van de gekozen foto: vult het hele uploadvlak */
+.upload-preview {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+/* Zodra er een foto is: kommetje en tekst weg, rand wordt heel */
+.upload.is-filled { border-style: solid; }
+.upload.is-filled .bowl,
+.upload.is-filled .upload-text { display: none; }
+
+/* Verbergt het echte bestandsveld, maar het blijft met het toetsenbord bereikbaar */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
 
 /* Kommetje met bolletje, alleen met CSS getekend */
 .bowl {
@@ -208,7 +234,9 @@ h1 { font-size: 2.2rem; }
 }
 
 /* Alle tekstvelden delen dezelfde stijl */
-input[type="text"] {
+input[type="text"],
+input[type="number"],
+select {
     width: 100%;
     height: 42px;
     padding: 0 16px;
@@ -218,6 +246,16 @@ input[type="text"] {
     color: var(--green-900);
     font-size: 1rem;
 }
+
+.melding {
+    margin: 20px 0 0;
+    padding: 14px 20px;
+    border-radius: 16px;
+    background: var(--white);
+}
+.melding--fout { border: 2px solid #c0392b; color: #8e2a20; }
+.melding--ok   { border: 2px solid var(--green-500); }
+.melding ul { list-style: disc; padding-left: 20px; }
 
 /* =========================================================
    7. RECHTERKOLOM – ingrediënten en stappen
