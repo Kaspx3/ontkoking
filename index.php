@@ -105,7 +105,7 @@ include 'includes/header.php';
             <?php if (!$recipes): ?>
                 <div class="empty">
                     <h3>Geen recepten gevonden</h3>
-                    <p>Pas je filters aan of <a class="link" href="bewerken.php">voeg een nieuw recept toe</a>.</p>
+                    <p>Pas je filters aan of <a class="link" href="ToevoegPagina.html">voeg een nieuw recept toe</a>.</p>
                 </div>
             <?php else: ?>
                 <div class="grid">

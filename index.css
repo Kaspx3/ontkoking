@@ -293,12 +293,12 @@ a {
 }
 
 .fav {
-    width: 44px;
-    height: 44px;
+    width: 68px;
+    height: 68px;
     border: 0;
     border-radius: 50%;
-    background: var(--white);
-    color: var(--green);
+    background: yellow;
+    color: yellow;
     font-size: 20px;
     line-height: 1;
     cursor: pointer;
