@@ -1,0 +1,180 @@
+body {
+    margin: 0;
+    font-family: 'Inter', Arial, sans-serif;
+    background: #f5f7f4;
+    color: #1e3a2d;
+}
+
+/* Hero met foto */
+.hero {
+    background: #1e3a2d;
+    padding: 60px 16px;
+    text-align: center;
+}
+
+.recept-foto {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 16px;
+}
+
+/* Hoofdvak */
+.recept {
+    max-width: 1100px;
+    margin: 32px auto;
+    padding: 0 16px;
+}
+
+/* Titel, labels en knoppen */
+.recept-kop {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.recept-kop h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.5rem;
+    color: #1e3a2d;
+    margin: 0 0 14px;
+}
+
+.labels {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.label {
+    background: #a8d8b0;
+    color: #1e3a2d;
+    padding: 8px 18px;
+    border-radius: 999px;
+    font-weight: 600;
+}
+
+.acties {
+    display: flex;
+    gap: 10px;
+}
+
+.knop {
+    border: 1px solid #a8d8b0;
+    background: #fff;
+    color: #1e3a2d;
+    padding: 10px 22px;
+    border-radius: 999px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.knop-groen {
+    background: #4a9d5e;
+    border-color: #4a9d5e;
+    color: #fff;
+}
+
+/* Twee kolommen */
+.recept-inhoud {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 32px;
+    align-items: start;
+}
+
+.recept h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5rem;
+    color: #1e3a2d;
+    margin: 0 0 20px;
+}
+
+/* Stappen */
+.stap {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: #fff;
+    border: 1px solid #e3e9e3;
+    border-radius: 20px;
+    padding: 16px 20px;
+    margin-bottom: 14px;
+}
+
+.stap p {
+    margin: 0;
+    line-height: 1.5;
+}
+
+.stap-nummer {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #4a9d5e;
+    color: #fff;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Ingrediëntenkaart */
+.ingredienten {
+    background: #fff;
+    border: 1px solid #e3e9e3;
+    border-radius: 24px;
+    padding: 28px;
+}
+
+.ingredienten ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 28px;
+}
+
+.ingredienten li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.ingredienten li::before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #4a9d5e;
+    flex-shrink: 0;
+}
+
+.knop-lijst {
+    width: 100%;
+    background: #4a9d5e;
+    color: #fff;
+    border: none;
+    padding: 14px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.knop-lijst:hover {
+    background: #3d8a50;
+}
+
+/* Telefoon */
+@media (max-width: 800px) {
+    .recept-kop {
+        flex-direction: column;
+    }
+
+    .recept-inhoud {
+        grid-template-columns: 1fr;
+    }
+}
