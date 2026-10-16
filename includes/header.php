@@ -16,7 +16,7 @@ $user       = current_user();
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
@@ -33,7 +33,7 @@ $user       = current_user();
       <input type="search" name="q" placeholder="Zoeken…" value="<?= e($_GET['q'] ?? '') ?>">
     </form>
 
-    <a class="round-btn round-btn-light" href="bewerken.php" title="Nieuw recept">+</a>
+    <a class="round-btn round-btn-light" href="recept_form.php" title="Nieuw recept">+</a>
 
     <?php if ($user): ?>
       <a class="header-link" href="logout.php">Uitloggen</a>
