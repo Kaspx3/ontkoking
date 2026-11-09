@@ -51,7 +51,7 @@ $stmt = $pdo->prepare(
 $stmt->execute([$uid]);
 $items = $stmt->fetchAll();
 
-$pageTitle  = 'Boodschappenlijst - MijnRecepten';
+$pageTitle  = 'Boodschappenlijst - ReceptenBaas';
 $activePage = 'boodschappenlijst';
 include 'includes/header.php';
 ?>

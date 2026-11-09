@@ -97,7 +97,7 @@ $backUrl = 'index.php' . ($_SERVER['QUERY_STRING'] ? '?' . $_SERVER['QUERY_STRIN
 
 $total = count($recipes);
 
-$pageTitle  = 'Al je recepten - MijnRecepten';
+$pageTitle  = 'Al je recepten - ReceptenBaas';
 $activePage = 'recepten';
 include 'includes/header.php';
 ?>

@@ -159,7 +159,7 @@ if (!$ingredienten) $ingredienten = ['', '', ''];
 if (!$stappen)      $stappen      = ['', ''];
 $voorbeeldIng = ['Bijv. 200 g bloem', 'Bijv. 1 el honing', 'Bijv. snufje zout'];
 
-$pageTitle  = ($id ? 'Recept bewerken' : 'Recept toevoegen') . ' - MijnRecepten';
+$pageTitle  = ($id ? 'Recept bewerken' : 'Recept toevoegen') . ' - ReceptenBaas';
 $activePage = '';
 include 'includes/header.php';
 ?>

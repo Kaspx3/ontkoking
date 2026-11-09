@@ -2,7 +2,7 @@
 // Zet $pageTitle en $activePage in de pagina voordat je dit bestand include
 require_once __DIR__ . '/../db.php';
 
-$pageTitle  = $pageTitle  ?? 'MijnRecepten';
+$pageTitle  = $pageTitle  ?? 'ReceptenBaas';
 $activePage = $activePage ?? '';
 $user       = current_user();
 ?>
@@ -11,6 +11,7 @@ $user       = current_user();
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#17332a">
   <title><?= e($pageTitle) ?></title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,7 +22,7 @@ $user       = current_user();
 <body>
 
   <header class="site-header">
-    <a class="logo" href="index.php">Mijn<span>Recepten</span></a>
+    <a class="logo" href="index.php">Recepten<span>Baas</span></a>
 
     <nav class="main-nav">
       <a href="index.php" class="<?= $activePage === 'recepten' ? 'active' : '' ?>">Recepten</a>
