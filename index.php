@@ -4,7 +4,7 @@ require_once 'db.php';
 $user = current_user();
 $uid  = $user['id'] ?? 0;
 
-// ---------- Filters uit de URL ----------
+
 $q          = trim($_GET['q'] ?? '');
 $category   = $_GET['categorie'] ?? '';
 $vegetarian = isset($_GET['vegetarisch']);
@@ -13,7 +13,7 @@ $glutenFree = isset($_GET['glutenvrij']);
 $onlyFavs   = isset($_GET['favorieten']);
 $sort       = $_GET['sorteer'] ?? 'nieuw';
 
-// Geen filter, zoekopdracht of sortering? Dan tonen we de startpagina met hero en categorieën.
+
 $isBrowsing = $q === '' && $category === '' && !$vegetarian && !$quick && !$glutenFree
            && !$onlyFavs && !isset($_GET['sorteer']) && !isset($_GET['alle']);
 
@@ -24,7 +24,7 @@ $orderBy = [
 ][$sort] ?? 'r.aangemaakt_op DESC';
 
 $where  = [];
-$params = [$uid];   // eerste ? hoort bij de favorieten-join
+$params = [$uid];   
 
 if ($q !== '') {
     $where[] = '(r.titel LIKE ? OR r.beschrijving LIKE ?)';
@@ -48,7 +48,7 @@ $stmt = $pdo->prepare($sql);
 $stmt->execute($params);
 $recipes = $stmt->fetchAll();
 
-// Categorieën met het aantal recepten per categorie (voor de tegels)
+
 $catStats = $pdo->query(
     'SELECT c.naam, COUNT(r.id) AS aantal
      FROM categorieen c
@@ -58,7 +58,7 @@ $catStats = $pdo->query(
 )->fetchAll();
 $categories = array_column($catStats, 'naam');
 
-// Zoekt een foto in assets/img/ (jpg, jpeg, webp of png). Geen foto gevonden = null.
+
 if (!function_exists('site_image')) {
     function site_image(string $base): ?string
     {
@@ -72,21 +72,21 @@ if (!function_exists('site_image')) {
     }
 }
 
-// "Hoofdgerecht" -> "hoofdgerecht" (bestandsnaam van de categoriefoto)
+
 function slugify(string $text): string
 {
     return trim(preg_replace('/[^a-z0-9]+/', '-', strtolower($text)), '-');
 }
 
-// Achtergrondfoto van de hero: assets/img/hero.jpg (of .jpeg/.webp/.png)
+
 $heroImage = site_image('hero');
 
-// Link voor een categorie-pill: behoud de andere filters
+
 function category_link(string $name, string $selected): string
 {
     $params = $_GET;
     if ($name === $selected) {
-        unset($params['categorie']);      // nog een keer klikken = filter weg
+        unset($params['categorie']);     
     } else {
         $params['categorie'] = $name;
     }
@@ -108,7 +108,6 @@ include 'includes/header.php';
     <section class="hero"<?php if ($heroImage): ?>
              style="background-image: linear-gradient(90deg, rgba(18, 41, 31, 0.92), rgba(18, 41, 31, 0.72) 50%, rgba(18, 41, 31, 0.3)), url('<?= e($heroImage) ?>')"<?php endif; ?>>
         <div class="hero-text">
-            <span class="eyebrow">Snel, simpel en zonder gedoe</span>
             <h1>Wat ga jij <em>vandaag</em> koken?</h1>
             <p>Bewaar je favoriete recepten, ontdek nieuwe gerechten en maak met één klik een boodschappenlijst.</p>
 
@@ -141,7 +140,13 @@ include 'includes/header.php';
 
         <div class="cat-grid">
             <?php foreach ($catStats as $i => $cat): ?>
-                <?php $photo = site_image('categorieen/' . slugify($cat['naam'])); ?>
+                <?php
+                    $imageName = slugify($cat['naam']);
+                    if ($imageName === 'hoofdgerecht') {
+                        $imageName = 'diner';
+                    }
+                    $photo = site_image($imageName);
+                ?>
                 <a class="cat-tile tone-<?= $i % 6 ?><?= $photo ? ' has-photo' : '' ?>"
                    href="?categorie=<?= urlencode($cat['naam']) ?>"
                    <?php if ($photo): ?>style="background-image: url('<?= e($photo) ?>')"<?php endif; ?>>
@@ -153,7 +158,7 @@ include 'includes/header.php';
         </div>
     </section>
 
-    <!-- ===== Nieuwste recepten (pas ná de categorieën) ===== -->
+
     <section class="section">
         <div class="section-head">
             <div>
@@ -179,7 +184,7 @@ include 'includes/header.php';
 
 <?php else: ?>
 
-    <!-- ===== Zoekresultaten / gefilterde lijst ===== -->
+
     <section class="intro">
         <a class="back-link" href="index.php">← Alle categorieën</a>
         <h1>

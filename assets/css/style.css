@@ -227,7 +227,6 @@ img {
         linear-gradient(135deg, #12291f, #17332a 55%, #25513b);
     background-size: cover;
     background-position: center 40%;
-    border-radius: 0 0 56px 56px;
     color: var(--white);
 }
 
